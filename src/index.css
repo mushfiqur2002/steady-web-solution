@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
 /*
   Define ALL your custom variables within a single @theme block.
   The light theme is the default base.
@@ -54,6 +54,8 @@
   --color-sidebar-accent-foreground: var(--color-accent-foreground);
   --color-sidebar-border: var(--color-border);
   --color-sidebar-ring: var(--color-ring);
+
+  --font-saira: "Saira Stencil One",;
 }
 
 /*
@@ -115,8 +117,8 @@ html {
 
   .glass-card {
     background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.1),
@@ -148,9 +150,11 @@ html {
         transparent,
         rgba(255, 255, 255, 0.1));
   }
-  .center{
+
+  .center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
 }
