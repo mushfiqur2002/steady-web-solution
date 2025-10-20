@@ -36,7 +36,7 @@ function Home() {
             </section>
 
             <section className="h-screen w-full center">
-                <h1>abbout</h1>
+                <h1>hello</h1>
             </section>
         </div>
     )
