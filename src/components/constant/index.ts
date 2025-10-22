@@ -9,16 +9,16 @@ export const navLinks = [
     {
         lable: 'about',
         icon: User,
-        path: '/about'
+        path: '/about-us'
     },
     {
         lable: 'projects',
         icon: FolderOpenDot,
-        path: '/projects'
+        path: '/our-projects'
     },
     {
         lable: 'contact',
         icon: NotebookText,
-        path: '/contact'
+        path: '/our-contacts'
     }
 ]

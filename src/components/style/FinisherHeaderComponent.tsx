@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 declare global {
     interface Window {
@@ -6,7 +6,7 @@ declare global {
     }
 }
 
-function FinisherHeaderComponent() {
+const FinisherHeaderComponent: React.FC = () => {
     useEffect(() => {
         const script = document.createElement("script");
         script.src = "/finisher-header.es5.min.js";
@@ -38,7 +38,7 @@ function FinisherHeaderComponent() {
     );
 }
 
-export default FinisherHeaderComponent
+export default React.memo(FinisherHeaderComponent);
 
 
 
