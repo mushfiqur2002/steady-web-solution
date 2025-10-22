@@ -1,5 +1,3 @@
-import React from 'react'
-
 function AboutInfo() {
     return (
         <div className='center flex-col'>
