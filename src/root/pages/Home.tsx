@@ -1,10 +1,10 @@
-import FinisherHeaderComponent from "@/components/style/FinisherHeaderComponent"
 import { useEffect, useState } from "react";
 import TeamsCards from "@/components/shared/TeamsCards";
 import { projectInfo, teamMembers } from "@/components/jsondata/index";
 import AboutInfo from "@/components/shared/AboutInfo";
 import ProjectShowCase from "@/components/shared/ProjectShowCase";
 import ContactInfo from "@/components/shared/ContactInfo";
+import FinisherHeaderComponent from "@/components/style/FinisherHeaderComponent";
 
 function Home() {
     const arr = ['Build', 'design', 'redesign', 'optimize', 'systemize'];
