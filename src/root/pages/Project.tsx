@@ -8,7 +8,6 @@ function Project() {
             <ProjectShowCase projectInfo={projectInfo} />
             <ProjectShowCase projectInfo={projectInfo} />
             <ProjectShowCase projectInfo={projectInfo} />
-
         </div>
     )
 }
