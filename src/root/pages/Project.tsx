@@ -7,6 +7,7 @@ function Project() {
             <h2 className="text-4xl font-bold">Our Creations</h2>
             <ProjectShowCase projectInfo={projectInfo} />
             <ProjectShowCase projectInfo={projectInfo} />
+            <ProjectShowCase projectInfo={projectInfo} />
 
         </div>
     )
