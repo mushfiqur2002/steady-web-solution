@@ -4,21 +4,21 @@ export const navLinks = [
     {
         lable: 'home',
         icon: House,
-        path: '/'
+        path: '#home'
     },
     {
         lable: 'about',
         icon: User,
-        path: '/about-us'
+        path: '#about'
     },
     {
         lable: 'projects',
         icon: FolderOpenDot,
-        path: '/our-projects'
+        path: '#projects'
     },
     {
         lable: 'contact',
         icon: NotebookText,
-        path: '/our-contacts'
+        path: '#contact'
     }
 ]

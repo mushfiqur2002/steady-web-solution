@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { Facebook, Github, Linkedin } from "lucide-react";
 
 
@@ -39,19 +38,19 @@ const TeamsCards: React.FC<TeamsCardsProps> = ({ members }) => {
                         {/* Social Links */}
                         <div className="col-[2/3] row-[1/2] flex flex-col justify-center items-center gap-4 bg-gray-50/70 rounded-xl backdrop-blur-sm shadow-sm">
                             {member.socialLinks.facebook && (
-                                <Link to={member.socialLinks.facebook}>
+                                <a href={member.socialLinks.facebook} target="_blank" rel="noopener noreferrer">
                                     <Facebook strokeWidth={1} className="hover:text-primary transition-transform hover:scale-110 duration-300" />
-                                </Link>
+                                </a>
                             )}
                             {member.socialLinks.linkedin && (
-                                <Link to={member.socialLinks.linkedin}>
+                                <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
                                     <Linkedin strokeWidth={1} className="hover:text-primary transition-transform hover:scale-110 duration-300" />
-                                </Link>
+                                </a>
                             )}
                             {member.socialLinks.github && (
-                                <Link to={member.socialLinks.github}>
+                                <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer">
                                     <Github strokeWidth={1} className="hover:text-primary transition-transform hover:scale-110 duration-300" />
-                                </Link>
+                                </a>
                             )}
                         </div>
 
