@@ -1,45 +1,76 @@
 import Logo from "@/assets/long-logo.svg"
 import ShortLogo from "@/assets/short-logo.svg"
 import { navLinks } from "../constant"
-import { Link, NavLink, useLocation } from "react-router-dom"
 import { useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react';
 function NavBar() {
     const { scrollY } = useScroll();
     const [visible, setVisible] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('#home');
 
     useMotionValueEvent(scrollY, 'change', (latest) => {
         setVisible(latest > 50);
     })
 
-    const { pathname} = useLocation();
+    // Track active section based on scroll position
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = navLinks.map(link => document.getElementById(link.path.replace('#', '')));
+            const scrollPosition = window.scrollY + 150;
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
+                if (section && section.offsetTop <= scrollPosition) {
+                    setActiveSection(navLinks[i].path);
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial position
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollToSection = (sectionId: string) => {
+        const element = document.getElementById(sectionId.replace('#', ''));
+        if (element) {
+            const yOffset = -80; // Offset for fixed navbar
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        setIsMobileMenuOpen(false);
+    };
     return (
         <div className="">
             <nav
                 className={`h-18 px-6 flex items-center justify-between fixed z-50 transition-all duration-300 
                     ${visible
-                        ? 'w-full md:w-[80%] py-2 shadow-md left-1/2 -translate-x-1/2 md:top-4 md:rounded-[50px] backdrop-blur-md bg-white/30 border border-white/30'
+                        ? 'w-full md:w-[90%] lg:w-[80%] py-2 shadow-md left-1/2 -translate-x-1/2 md:top-4 md:rounded-[50px] backdrop-blur-md bg-white/30 border border-white/30'
                         : 'w-full py-4 shadow-none left-0 translate-x-0 top-0 '
                     }`}
             >
                 <section>
-                    <Link to={'/'}>
-                        <img src={Logo} alt="logo" className="w-42 h-auto hidden md:flex" />
+                    <button onClick={() => scrollToSection('#home')} className="cursor-pointer">
+                        <img src={Logo} alt="logo" className="w-42 h-auto hidden md:flex mt-[6px]" />
                         <img src={ShortLogo} alt="logo" className="flex md:hidden w-8 h-auto" />
-                    </Link>
+                    </button>
                 </section>
                 {/* Desktop Navigation */}
                 <section className="flex items-center justify-center gap-12 hidden md:flex">
                     <ul className="flex gap-8">
                         {navLinks.map(({ lable, path, icon: Icon }) => {
                             return (
-                                <li key={lable} className={`${pathname === path ? 'text-primary border-b-2 border-primary md:border-0' : 'text-text'}`}>
-                                    <NavLink to={path} className='flex items-center justify-center gap-2'>
+                                <li key={lable} className={`${activeSection === path ? 'text-primary border-b-2 border-primary md:border-0' : 'text-text'}`}>
+                                    <button 
+                                        onClick={() => scrollToSection(path)}
+                                        className='flex items-center justify-center gap-2 cursor-pointer'
+                                    >
                                         <Icon className="w-[20px] h-[20px]" />
                                         <p className="capitalize text-[16px] hidden md:flex">{lable}</p>
-                                    </NavLink>
+                                    </button>
                                 </li>
                             )
                         })}
@@ -72,21 +103,20 @@ function NavBar() {
                             {
                                 navLinks.map(({ lable, path, icon: Icon }) => {
                                     return (
-                                        <li key={lable} className={`${pathname === path ? 'text-primary border-b border-primary md:border-0' : 'text-text'}`}>
-                                            <NavLink
-                                                to={path}
-                                                className={`flex items-center gap-4 py-3 px-4 rounded-md transition-colors border-b border-slate-300`}
-                                                onClick={() => setIsMobileMenuOpen(false)}>
+                                        <li key={lable} className={`${activeSection === path ? 'text-primary border-b border-primary md:border-0' : 'text-text'}`}>
+                                            <button
+                                                onClick={() => scrollToSection(path)}
+                                                className={`flex items-center gap-4 py-3 px-4 rounded-md transition-colors border-b border-slate-300 w-full text-left cursor-pointer`}
+                                            >
                                                 <Icon className="w-[20px] h-[20px]" />
                                                 <p className="capitalize text-[16px]">{lable}</p>
-                                            </NavLink>
+                                            </button>
                                         </li>
                                     )
                                 })
                             }
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
